@@ -8,15 +8,15 @@ import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import java.awt.Font;
 
-public class WinCEPlacaPasseio implements ActionListener
+public class WinCadPasseio implements ActionListener
 {
-	static WinCEPlacaPasseio win = new WinCEPlacaPasseio();
+	static WinCadPasseio win = new WinCadPasseio();
 	static JFrame win1 = new JFrame();
 	static WinPasseio winPasseio = new WinPasseio();
 
 
 	static JLabel rt1QtdPassageiros = new JLabel();
-	static JLabel rt2InformePlaca = new JLabel();
+	static JLabel rt2Placa = new JLabel();
 	static JLabel rt3Marca = new JLabel();
 	static JLabel rt4Modelo = new JLabel();
 	static JLabel rt5Cor = new JLabel();
@@ -35,8 +35,9 @@ public class WinCEPlacaPasseio implements ActionListener
 	static JTextField cx8QtdPistoes = new JTextField();
 	static JTextField cx9QtdPotencia = new JTextField();
 
-	static JButton bt1Consultar = new JButton();
-	static JButton bt2Excluir = new JButton();
+	static JButton bt1Cadastrar = new JButton();
+	static JButton bt2Limpar = new JButton();
+	static JButton bt3Novo = new JButton();
 	static JButton bt4Sair = new JButton();
 
 	static Color green = new Color(79, 212, 159);
@@ -52,20 +53,29 @@ public class WinCEPlacaPasseio implements ActionListener
 	static Font verdanaTitle = new Font("Verdana", Font.BOLD, 15);
 	static Font verdanaBotton = new Font("Verdana", Font.BOLD, 9);
 
-
-	static BDVeiculos veiculo = new BDVeiculos();
-
-	public void getCEPlacaPasseio()
+	public void getCadPasseio()
 	{
-		setWinInit();
 		setRtInit();
 		setCxsInit();
 		setButtonInit();
+		setWinInit();
+	}
 
-		win1.add(rt2InformePlaca);
-		win1.add(cx2Placa);
+	public void setWinInit()
+	{
+		win1.setTitle("Cadastro de Passeio");
+		win1.getContentPane().setBackground(black);
+		win1.setSize(440,500);
+		win1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		win1.setLayout(null);
+		win1.setLocationRelativeTo(null);
+
+		win1.setVisible(true);
+
 		win1.add(rt1QtdPassageiros);
 		win1.add(cx1QtdPassageiros);
+		win1.add(rt2Placa);
+		win1.add(cx2Placa);
 		win1.add(rt3Marca);
 		win1.add(cx3Marca);
 		win1.add(rt4Modelo);
@@ -80,46 +90,44 @@ public class WinCEPlacaPasseio implements ActionListener
 		win1.add(cx8QtdPistoes);
 		win1.add(rt9QtdPotencia);
 		win1.add(cx9QtdPotencia);
-		win1.add(bt1Consultar);
-		win1.add(bt2Excluir);
+		win1.add(bt1Cadastrar);
+		win1.add(bt2Limpar);
+		win1.add(bt3Novo);
 		win1.add(bt4Sair);
-
-		bt1Consultar.addActionListener(win);
-		bt2Excluir.addActionListener(win);
-		bt4Sair.addActionListener(win);
-	}
-
-	public void setWinInit()
-	{
-		win1.setTitle("Consulta/Excluir pela Placa");
-		win1.getContentPane().setBackground(black);
-		win1.setSize(440,500);
-		win1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		win1.setLayout(null);
-		win1.setVisible(true);
 	}
 
 	public void setButtonInit()
 	{
-		bt1Consultar.setText("Cadastrar");
-		bt1Consultar.setBounds(20,390,90,40);
-		bt1Consultar.setForeground(grayBt);
-		bt1Consultar.setFont(verdanaBotton);
-		bt1Consultar.setBackground(green);
-		bt1Consultar.setVisible(false);
+		bt1Cadastrar.setText("Cadastrar");
+		bt1Cadastrar.setBounds(20,390,90,40);
+		bt1Cadastrar.setForeground(grayBt);
+		bt1Cadastrar.setFont(verdanaBotton);
+		bt1Cadastrar.setBackground(green);
+		bt1Cadastrar.setVisible(false);
 
-		bt2Excluir.setText("Limpar");
-		bt2Excluir.setBounds(125,390,80,40);
-		bt2Excluir.setForeground(grayBt);
-		bt2Excluir.setFont(verdanaBotton);
-		bt2Excluir.setBackground(orange);
-		bt2Excluir.setVisible(false);
+		bt2Limpar.setText("Limpar");
+		bt2Limpar.setBounds(125,390,80,40);
+		bt2Limpar.setForeground(grayBt);
+		bt2Limpar.setFont(verdanaBotton);
+		bt2Limpar.setBackground(orange);
+		bt2Limpar.setVisible(false);
+
+		bt3Novo.setText("Novo");
+		bt3Novo.setBounds(220,390,80,40);
+		bt3Novo.setForeground(grayBt);
+		bt3Novo.setFont(verdanaBotton);
+		bt3Novo.setBackground(blue);
 
 		bt4Sair.setText("Sair");
 		bt4Sair.setBounds(310,390,80,40);
 		bt4Sair.setForeground(grayBt);
 		bt4Sair.setFont(verdanaBotton);
 		bt4Sair.setBackground(red);
+
+		bt1Cadastrar.addActionListener(win);
+		bt2Limpar.addActionListener(win);
+		bt3Novo.addActionListener(win);
+		bt4Sair.addActionListener(win);
 	}
 
 	public void setCxsInit()
@@ -129,8 +137,8 @@ public class WinCEPlacaPasseio implements ActionListener
 		setTextCxs(null);
 
 		cx1QtdPassageiros.requestFocus();
-		cx2Placa.setBounds(180,20,210,25);
-		cx1QtdPassageiros.setBounds(180,60,210,25);
+		cx1QtdPassageiros.setBounds(180,20,210,25);
+		cx2Placa.setBounds(180,60,210,25);
 		cx3Marca.setBounds(180,100,210,25);
 		cx4Modelo.setBounds(180,140,210,25);
 		cx5Cor.setBounds(180,180,210,25);
@@ -138,19 +146,76 @@ public class WinCEPlacaPasseio implements ActionListener
 		cx7VelocidadeMax.setBounds(180,260,210,25);
 		cx8QtdPistoes.setBounds(180,300,210,25);
 		cx9QtdPotencia.setBounds(180,340,210,25);
+
+	}
+
+	public void setTextCxs(String text)
+	{
+		cx1QtdPassageiros.setText(text);
+		cx1QtdPassageiros.setFont(verdana);
+
+		cx2Placa.setText(text);
+		cx2Placa.setFont(verdana);
+
+		cx3Marca.setText(text);
+		cx3Marca.setFont(verdana);
+
+		cx4Modelo.setText(text);
+		cx4Modelo.setFont(verdana);
+
+		cx5Cor.setText(text);
+		cx5Cor.setFont(verdana);
+
+		cx6QtdRodas.setText(text);
+		cx6QtdRodas.setFont(verdana);
+
+		cx7VelocidadeMax.setText(text);
+		cx7VelocidadeMax.setFont(verdana);
+
+		cx8QtdPistoes.setText(text);
+		cx8QtdPistoes.setFont(verdana);
+
+		cx9QtdPotencia.setText(text);
+		cx9QtdPotencia.setFont(verdana);
+	}
+
+	public void setColorCxs(Color color)
+	{
+		cx1QtdPassageiros.setBackground(color);
+		cx2Placa.setBackground(color);
+		cx3Marca.setBackground(color);
+		cx4Modelo.setBackground(color);
+		cx5Cor.setBackground(color);
+		cx6QtdRodas.setBackground(color);
+		cx7VelocidadeMax.setBackground(color);
+		cx8QtdPistoes.setBackground(color);
+		cx9QtdPotencia.setBackground(color);
+	}
+
+	public void setEditableCxs(Boolean set)
+	{
+		cx1QtdPassageiros.setEditable(set);
+		cx2Placa.setEditable(set);
+		cx3Marca.setEditable(set);
+		cx4Modelo.setEditable(set);
+		cx5Cor.setEditable(set);
+		cx6QtdRodas.setEditable(set);
+		cx7VelocidadeMax.setEditable(set);
+		cx8QtdPistoes.setEditable(set);
+		cx9QtdPotencia.setEditable(set);
 	}
 
 	public void setRtInit()
 	{
-		rt2InformePlaca.setText("Informe a Placa: ");
-		rt2InformePlaca.setForeground(red);
-		rt2InformePlaca.setFont(verdanaTitle);
-		rt2InformePlaca.setBounds(20,20,150,25);
-
 		rt1QtdPassageiros.setText("Qtd.Passageiros: ");
 		rt1QtdPassageiros.setForeground(write);
 		rt1QtdPassageiros.setFont(verdanaTitle);
-		rt1QtdPassageiros.setBounds(20,60,150,25);
+		rt1QtdPassageiros.setBounds(20,20,150,25);
+
+		rt2Placa.setText("Placa: ");
+		rt2Placa.setForeground(write);
+		rt2Placa.setFont(verdanaTitle);
+		rt2Placa.setBounds(20,60,150,25);
 
 		rt3Marca.setText("Marca: ");
 		rt3Marca.setForeground(write);
@@ -190,118 +255,40 @@ public class WinCEPlacaPasseio implements ActionListener
 
 	public void actionPerformed(ActionEvent evt)
 	{
-		if (evt.getSource().equals(bt1Consultar))
+		if (evt.getSource().equals(bt1Cadastrar))
 		{
-			bt1ConsultarAct();
+			bt1CadastrarAct();
 		}
-		if (evt.getSource().equals(bt2Excluir))
+		if (evt.getSource().equals(bt2Limpar))
 		{
-			bt2ExcluirAct();
+			bt2LimparAct();
+		}
+		if (evt.getSource().equals(bt3Novo))
+		{
+			bt3NovoAct();
 		}
 		if (evt.getSource().equals(bt4Sair))
 		{
 			winPasseio.getPasseio();
-			win1.setVisible(false);
+			win1.dispose();
 		}
 	}
 
-	public void bt1ConsultarAct()
+	public void bt1CadastrarAct()
 	{
 		if (checkValueCxs() == 1)
 			return;
 		else
 		{
-			if (cadPasseio() == 0)
-			{
-				bloCxsPasseioSuc();
-				bt1Consultar.setVisible(false);
-				bt2Excluir.setVisible(false);
-			}
-			else
-			{
-				cx2Placa.setBackground(red);
-				cx2Placa.setText(null);
-			}
-		}
-	}
 
-	public void bt3NovoAct()
-	{
-		cx1QtdPassageiros.requestFocus();
-		bt2ExcluirAct();
-		setEditableCxs(true);
-		bt1Consultar.setVisible(true);
-		bt2Excluir.setVisible(true);
-	}
-
-	public void bt2ExcluirAct()
-	{
-		setColorCxs(gray);
-		setTextCxs(null);
-		cx1QtdPassageiros.requestFocus();
-	}
-
-	public int cadPasseio()
-	{
-		Passeio passeio = new Passeio();
-		passeio = initPasseio(passeio);
-		try
-		{
-			veiculo.setListaPasseio(passeio);
-			JOptionPane.showMessageDialog(
-				null,
-				"Veiculo" +
-				" ["+ veiculo.getSizeListaPasseio() +
-				"] cadastrado com sucesso!",
-				"Cadastro",
-				JOptionPane.INFORMATION_MESSAGE
-			);
-			return(0);
+			System.out.println("Controller novo cadastro liberado!\n");
+			//se der certo o cadastro seguir com a formatação abaixo!
+			bt1Cadastrar.setVisible(false);
+			bt2Limpar.setVisible(false);
+			bt3Novo.setVisible(true);
+			setColorCxs(black);
+			setEditableCxs(false);
 		}
-		catch(VeicExistException vee)
-		{
-			cx2Placa.requestFocus();
-			JOptionPane.showMessageDialog(
-				null,
-				"Veiculo de placa " +
-				cx2Placa.getText() +
-				" Já existe no sistema!\n" +
-				"\nVerifique a placa!",
-				"Cadastro",
-				JOptionPane.ERROR_MESSAGE
-			);
-			return(1);
-		}
-	}
-
-	public Passeio initPasseio(Passeio passeio)
-	{
-		passeio.setMarca(cx1QtdPassageiros.getText());
-		passeio.setModelo(cx4Modelo.getText());
-		passeio.setCor(cx5Cor.getText());
-		passeio.setPlaca(cx2Placa.getText());
-		passeio.getMotor().setQtdPist(Integer.parseInt(cx8QtdPistoes.getText()));
-		passeio.getMotor().setPotencia(Integer.parseInt(cx9QtdPotencia.getText()));
-		try
-		{
-			passeio.setVelocMax(
-				"passeio", Float.parseFloat(cx7VelocidadeMax.getText()));
-		}
-		catch(VelocException se)
-		{
-			JOptionPane.showMessageDialog(
-				null,
-				"Velocidade máxima ajustada\n" +
-				"Para 100km/h conforme a regra!",
-				"Cadastro",
-				JOptionPane.INFORMATION_MESSAGE
-			);
-			cx7VelocidadeMax.setBackground(blue);
-			cx7VelocidadeMax.setText("100");
-		}
-		passeio.setQtdRodas(Integer.parseInt(cx6QtdRodas.getText()));
-		passeio.setQtdPassageiros(Integer.parseInt(cx1QtdPassageiros.getText()));
-		return (passeio);
 	}
 
 	public int checkValueCxs()
@@ -365,9 +352,9 @@ public class WinCEPlacaPasseio implements ActionListener
 			value.setText(null);
 			JOptionPane.showMessageDialog(
 				value,
-				"Valor inválido\n" +
-				"Aceito somente inteiro no campo ex: 4!",
-				"Erro Valor Inválido",
+				"Value Invalid\n" +
+				"acept only interger ex: 4!",
+				"Error Valeu invalid",
 				0,
 				null
 				);
@@ -390,9 +377,9 @@ public class WinCEPlacaPasseio implements ActionListener
 			value.setText(null);
 			JOptionPane.showMessageDialog(
 				value,
-				"Valor inválido!\n" +
-				"Aceito somente Float ex: 100.0!",
-				"Erro Valor Inválido!",
+				"Valeu invalid!\n" +
+				"Acept only Float ex: 100.0!",
+				"Error Valeu Invalid!",
 				0,
 				null
 				);
@@ -401,65 +388,20 @@ public class WinCEPlacaPasseio implements ActionListener
 		return (0);
 	}
 
-	public void bloCxsPasseioSuc()
+	public void bt3NovoAct()
 	{
-		setEditableCxs(false);
-		setColorCxs(green);
+		bt3Novo.setVisible(false);
+		cx1QtdPassageiros.requestFocus();
+		bt2LimparAct();
+		setEditableCxs(true);
+		bt1Cadastrar.setVisible(true);
+		bt2Limpar.setVisible(true);
 	}
 
-	public void setTextCxs(String text)
+	public void bt2LimparAct()
 	{
-		cx1QtdPassageiros.setText(text);
-		cx1QtdPassageiros.setFont(verdana);
-
-		cx2Placa.setText(text);
-		cx2Placa.setFont(verdana);
-
-		cx3Marca.setText(text);
-		cx3Marca.setFont(verdana);
-
-		cx4Modelo.setText(text);
-		cx4Modelo.setFont(verdana);
-
-		cx5Cor.setText(text);
-		cx5Cor.setFont(verdana);
-
-		cx6QtdRodas.setText(text);
-		cx6QtdRodas.setFont(verdana);
-
-		cx7VelocidadeMax.setText(text);
-		cx7VelocidadeMax.setFont(verdana);
-
-		cx8QtdPistoes.setText(text);
-		cx8QtdPistoes.setFont(verdana);
-
-		cx9QtdPotencia.setText(text);
-		cx9QtdPotencia.setFont(verdana);
-	}
-
-	public void setColorCxs(Color color)
-	{
-		cx1QtdPassageiros.setBackground(color);
-		cx2Placa.setBackground(color);
-		cx3Marca.setBackground(color);
-		cx4Modelo.setBackground(color);
-		cx5Cor.setBackground(color);
-		cx6QtdRodas.setBackground(color);
-		cx7VelocidadeMax.setBackground(color);
-		cx8QtdPistoes.setBackground(color);
-		cx9QtdPotencia.setBackground(color);
-	}
-
-	public void setEditableCxs(Boolean set)
-	{
-		cx1QtdPassageiros.setEditable(set);
-		cx2Placa.setEditable(set);
-		cx3Marca.setEditable(set);
-		cx4Modelo.setEditable(set);
-		cx5Cor.setEditable(set);
-		cx6QtdRodas.setEditable(set);
-		cx7VelocidadeMax.setEditable(set);
-		cx8QtdPistoes.setEditable(set);
-		cx9QtdPotencia.setEditable(set);
+		setColorCxs(gray);
+		setTextCxs(null);
+		cx1QtdPassageiros.requestFocus();
 	}
 }

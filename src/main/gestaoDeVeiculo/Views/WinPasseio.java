@@ -112,79 +112,23 @@ public class WinPasseio implements ActionListener
 	{
 		if (evt.getSource().equals(bt1Cadastrar))
 		{
-			System.out.println("- ok! Cadastrar :)!\n");
-			//winCadPasseio.getCadPasseio();
-			win1.setVisible(false);
+			winCadPasseio.getCadPasseio();
+			win1.dispose();
 		}
 		if (evt.getSource().equals(bt2Consultar))
 		{
 			winCEPlacaPasseio.getCEPlacaPasseio();
-			win1.setVisible(false);
+			win1.dispose();
 		}
 		if (evt.getSource().equals(bt3Imprimir))
 		{
 			winImpExcPasseio.getImpExcPasseio();
-			win1.setVisible(false);
+			win1.dispose();
 		}
 		if (evt.getSource().equals(bt4Sair))
 		{
-			System.out.println("Sair\n");
 			winMain.getGestaoVeic();
-			win1.setVisible(false);
+			win1.dispose();
 		}
 	}
-
-
-
-	// public void printAllPasseio()
-	// {
-	// 	int i;
-
-	// 	System.out.println("\n  - Ok! - Imprimir Todos os Veículos" +
-	// 		" de Passeio:");
-	// 	for(i = 0; i < veiculo.getSizeListaPasseio(); i++)
-	// 	{
-	// 		printVeiculoPasseio(i, veiculo.getListaPasseio(i));
-	// 	}
-
-	// 	if (i == 0)
-	// 	{
-	// 		System.out.println("\n  - Hum! Não temos Veículos de Passeio a" +
-	// 			" exibir!\n  - Por favor cadastre na opção 1.! :(\n\n\n");
-	// 	}
-	// 	else
-	// 	{
-	// 		System.out.println("\n  - Uhu! Todos Veículos de Passeio na" +
-	// 		" tela ! ;)\n\n\n");
-	// 	}
-	// }
-
-	// public void printVeiculoPasseio(int id, Passeio veiculoPasseio)
-	// {
-	// 	System.out.println("________________________________________________" +
-	// 		"_____");
-	// 	System.out.println("\tVeiculo de Passeio id [" + (id + 1) + "]\n");
-	// 	System.out.println("\t - Placa: " + veiculoPasseio.getPlaca());
-	// 	System.out.println("\t - Marca: " + veiculoPasseio.getMarca());
-	// 	System.out.println("\t - Modelo: " + veiculoPasseio.getModelo());
-	// 	System.out.println("\t - Cor: " + veiculoPasseio.getCor());
-	// 	System.out.println("\t - Velocidade Maxíma: " +
-	// 		 veiculoPasseio.getVelocMax() + " km/h");
-	// 	System.out.println("\t - Quantidade de Rodas: "
-	// 		+ veiculoPasseio.getQtdRodas());
-	// 	System.out.println("\t - Quantidade de Pistão : "
-	// 		+ veiculoPasseio.getMotor().getQtdPist());
-	// 	System.out.println("\t - Potência: "
-	// 		+ veiculoPasseio.getMotor().getPotencia() + " cv");
-	// 	System.out.println("\t - Cal.Quantidade total de letras: "
-	// 		+ veiculoPasseio.calcular());
-	// 	System.out.println("\t - Cal. Velocidade Máxima: "
-	// 		+ veiculoPasseio.calcVel(veiculoPasseio.getVelocMax()) + " M/h");
-	// 	System.out.println("\t - Quantidade de Passageiros: "
-	// 		+ veiculoPasseio.getQtdPassageiros());
-	// 	System.out.println("_______________________________________________" +
-	// 		"______\n");
-	// }
-
-
 }

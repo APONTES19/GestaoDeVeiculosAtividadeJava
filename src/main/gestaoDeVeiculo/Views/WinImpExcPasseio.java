@@ -15,18 +15,21 @@ import javax.swing.JTable;
 
 public class WinImpExcPasseio implements ActionListener
 {
-	static WinCadPasseio win = new WinCadPasseio();
+	static WinImpExcPasseio win = new WinImpExcPasseio();
 	static JFrame win1 = new JFrame();
-	static WinCadPasseio winPasseio = new WinCadPasseio();
+	static WinPasseio winPasseio = new WinPasseio();
 
-	static TableModel dataModel = new AbstractTableModel() {
-		public int getColumnCount() { return 10; }
-		public int getRowCount() { return 10;}
-		public Object getValueAt(int row, int col)
-		{ return (row*col); }
-	};
-	static JTable table = new JTable(dataModel);
-	static JScrollPane scrollpane = new JScrollPane(table);
+	// static TableModel dataModel = new AbstractTableModel()
+	// {
+	// 	public int getColumnCount() { return 10; }
+	// 	public int getRowCount() { return 10;}
+	// 	public Object getValueAt(int row, int col)
+	// 	{ return (row*col); }
+	// };
+
+
+	//static JTable table = new JTable(dataModel);
+	//static JScrollPane scrollpane = new JScrollPane(table);
 
 	static JButton bt1ImpTodos = new JButton();
 	static JButton bt2ExcTodos = new JButton();
@@ -47,13 +50,8 @@ public class WinImpExcPasseio implements ActionListener
 
 	public void getImpExcPasseio()
 	{
-		setWinInit();
 		setButtonInit();
-
-		win1.add(table);
-		win1.add(bt1ImpTodos);
-		win1.add(bt2ExcTodos);
-		win1.add(bt4Sair);
+		setWinInit();
 	}
 
 	public void setWinInit()
@@ -63,7 +61,14 @@ public class WinImpExcPasseio implements ActionListener
 		win1.setSize(600,400);
 		win1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		win1.setLayout(null);
+		win1.setLocationRelativeTo(null);
 		win1.setVisible(true);
+
+		//win1.add(table);
+		win1.add(bt1ImpTodos);
+		win1.add(bt2ExcTodos);
+		win1.add(bt4Sair);
+
 	}
 
 	public void setButtonInit()
@@ -87,6 +92,10 @@ public class WinImpExcPasseio implements ActionListener
 		bt4Sair.setForeground(grayBt);
 		bt4Sair.setFont(verdanaBotton);
 		bt4Sair.setBackground(red);
+
+		bt1ImpTodos.addActionListener(win);
+		bt2ExcTodos.addActionListener(win);
+		bt4Sair.addActionListener(win);
 	}
 
 	public void actionPerformed(ActionEvent evt)
@@ -101,18 +110,18 @@ public class WinImpExcPasseio implements ActionListener
 		}
 		if (evt.getSource().equals(bt4Sair))
 		{
-			winPasseio.getCadPasseio();
-			win1.setVisible(false);
+			winPasseio.getPasseio();
+			win1.dispose();
 		}
 	}
 
 	public void bt1ImpTodosAct()
 	{
-		System.out.println("isso\n");
+		System.out.println("Botão Imprimir\n");
 	}
 
 	public void bt2ExcTodosAct()
 	{
-		System.out.println("isso\n");
+		System.out.println("Botão Excluir\n");
 	}
 }

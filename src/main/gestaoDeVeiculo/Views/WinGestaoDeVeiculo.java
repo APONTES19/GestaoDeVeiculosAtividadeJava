@@ -27,22 +27,13 @@ public class WinGestaoDeVeiculo implements ActionListener
 
 	public void getGestaoVeic()
 	{
-		win1.setTitle("Gestão de veículos");
-		win1.getContentPane().setBackground(black);
-		win1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		win1.setSize(290,180);
-		win1.setVisible(true);
-		win1.setLayout(null);
-		win1.setLocationRelativeTo(null);
+		setButtonInit();
+		setRtInit();
+		setWinInit();
+	}
 
-		bt1Passeio.setBackground(blue);
-		bt1Passeio.setBounds(50, 30, 30, 30);
-		bt2Carga.setBackground(green);
-		bt2Carga.setBounds(50, 80, 30, 30);
-
-		bt1Passeio.addActionListener(win);
-		bt2Carga.addActionListener(win);
-
+	public void setRtInit()
+	{
 		rt1Passeio.setText("Passeio");
 		rt1Passeio.setForeground(write);
 		rt1Passeio.setFont(verdana);
@@ -51,7 +42,27 @@ public class WinGestaoDeVeiculo implements ActionListener
 		rt2Carga.setForeground(write);
 		rt2Carga.setFont(verdana);
 		rt2Carga.setBounds(90, 80, 50, 30);
+	}
 
+	public void setButtonInit()
+	{
+		bt1Passeio.setBackground(blue);
+		bt1Passeio.setBounds(50, 30, 30, 30);
+		bt2Carga.setBackground(green);
+		bt2Carga.setBounds(50, 80, 30, 30);
+		bt1Passeio.addActionListener(win);
+		bt2Carga.addActionListener(win);
+	}
+
+	public void setWinInit()
+	{
+		win1.setTitle("Gestão de veículos");
+		win1.getContentPane().setBackground(black);
+		win1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		win1.setSize(290,180);
+		win1.setVisible(true);
+		win1.setLayout(null);
+		win1.setLocationRelativeTo(null);
 		win1.add(bt1Passeio);
 		win1.add(rt1Passeio);
 		win1.add(bt2Carga);
@@ -63,12 +74,12 @@ public class WinGestaoDeVeiculo implements ActionListener
 		if (evt.getSource().equals(bt1Passeio))
 		{
 			winPasseio.getPasseio();
-			//win1.setVisible(false);
+			win1.dispose();
 		}
 		if (evt.getSource().equals(bt2Carga))
 		{
 			//winCarga.getCarga();
-			win1.setVisible(false);
+			win1.dispose();
 		}
 	}
 }
