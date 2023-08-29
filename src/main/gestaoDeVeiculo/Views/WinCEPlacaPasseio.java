@@ -3,6 +3,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.util.concurrent.CancellationException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -14,6 +15,8 @@ public class WinCEPlacaPasseio implements ActionListener
 	static WinCEPlacaPasseio win = new WinCEPlacaPasseio();
 	static JFrame win1 = new JFrame();
 	static WinPasseio winPasseio = new WinPasseio();
+	static ManutenirPasseio manutenirPasseio = new ManutenirPasseio();
+	static Passeio passeio = new Passeio();
 
 
 	static JLabel rt1QtdPassageiros = new JLabel();
@@ -52,9 +55,6 @@ public class WinCEPlacaPasseio implements ActionListener
 	static Font verdana = new Font("Verdana", Font.PLAIN, 15);
 	static Font verdanaTitle = new Font("Verdana", Font.BOLD, 15);
 	static Font verdanaBotton = new Font("Verdana", Font.BOLD, 9);
-
-
-	//static BDVeiculos veiculo = new BDVeiculos();
 
 	public void getCEPlacaPasseio()
 	{
@@ -149,30 +149,38 @@ public class WinCEPlacaPasseio implements ActionListener
 	{
 		cx1QtdPassageiros.setText(text);
 		cx1QtdPassageiros.setFont(verdana);
+		cx1QtdPassageiros.setForeground(write);
 
 		cx2Placa.setText(text);
 		cx2Placa.setFont(verdana);
 
 		cx3Marca.setText(text);
 		cx3Marca.setFont(verdana);
+		cx3Marca.setForeground(write);
 
 		cx4Modelo.setText(text);
 		cx4Modelo.setFont(verdana);
+		cx4Modelo.setForeground(write);
 
 		cx5Cor.setText(text);
 		cx5Cor.setFont(verdana);
+		cx5Cor.setForeground(write);
 
 		cx6QtdRodas.setText(text);
 		cx6QtdRodas.setFont(verdana);
+		cx6QtdRodas.setForeground(write);
 
 		cx7VelocidadeMax.setText(text);
 		cx7VelocidadeMax.setFont(verdana);
+		cx7VelocidadeMax.setForeground(write);
 
 		cx8QtdPistoes.setText(text);
 		cx8QtdPistoes.setFont(verdana);
+		cx8QtdPistoes.setForeground(write);
 
 		cx9QtdPotencia.setText(text);
 		cx9QtdPotencia.setFont(verdana);
+		cx9QtdPotencia.setForeground(write);
 	}
 
 	public void setColorCxs(Color color)
@@ -272,8 +280,45 @@ public class WinCEPlacaPasseio implements ActionListener
 			return;
 		else
 		{
-			System.out.println("BUSCAR NA BASE DE DADOS!\n");
-			bt2Excluir.setVisible(true);
+			passeio = manutenirPasseio.pesqPlacaPasseio(cx2Placa.getText());
+			if (passeio == null)
+			{
+					JOptionPane.showMessageDialog(
+							null,
+							"Placa não encontrado!",
+							"Veiculo Não Encontrado",
+							0
+						);
+				setColorCxs(black);
+				cx2Placa.setBackground(gray);
+				setTextCxs(null);
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(
+						null,
+						"Veiculo Encontrado <**>!",
+						"Veiculo Encontrado",
+						1
+					);
+
+				setColorCxs(grayBt);
+				cx2Placa.setBackground(gray);
+				bt2Excluir.setVisible(true);
+
+				cx1QtdPassageiros.setText(
+					String.valueOf(passeio.getQtdPassageiros()));
+				cx2Placa.setText(passeio.getPlaca());
+				cx3Marca.setText(passeio.getMarca());
+				cx4Modelo.setText(passeio.getModelo());
+				cx5Cor.setText(passeio.getCor());
+				cx6QtdRodas.setText(String.valueOf(passeio.getQtdRodas()));
+				cx7VelocidadeMax.setText(String.valueOf(passeio.getVelocMax()));
+				cx8QtdPistoes.setText(
+					String.valueOf(passeio.getMotor().getQtdPist()));
+				cx9QtdPotencia.setText(
+					String.valueOf(passeio.getMotor().getPotencia()));
+			}
 		}
 	}
 
@@ -298,12 +343,6 @@ public class WinCEPlacaPasseio implements ActionListener
 
 	public void bt2ExcluirAct()
 	{
-		setColorCxs(black);
-		setTextCxs(null);
-		setEditableCxs(false);
-		cx2Placa.setBackground(write);
-		cx2Placa.setEditable(true);
-		cx2Placa.requestFocus();
 
 		if (checkNullCxs(cx1QtdPassageiros) == 1)
 		{
@@ -313,7 +352,31 @@ public class WinCEPlacaPasseio implements ActionListener
 		}
 		else
 		{
-			System.out.println("EXCLUIR E AGUARDAR RETORNO + \n");
+			if( manutenirPasseio.excluirPlacaPasseio(cx2Placa.getText()) == 1 )
+			{
+				JOptionPane.showMessageDialog(
+					null,
+					"Veiculo Excluido com sucesso!",
+					"Veiculo Excluido",
+					1
+				);
+				setColorCxs(black);
+				setTextCxs(null);
+				setEditableCxs(false);
+				cx2Placa.setBackground(write);
+				cx2Placa.setEditable(true);
+				cx2Placa.requestFocus();
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(
+					null,
+					"Error ao Excluir Veiculo!",
+					"Erro ao Excluir",
+					0
+				);
+			}
+
 		}
 	}
 }

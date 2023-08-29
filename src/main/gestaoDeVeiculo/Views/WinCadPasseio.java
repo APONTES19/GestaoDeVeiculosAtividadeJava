@@ -13,6 +13,7 @@ public class WinCadPasseio implements ActionListener
 	static WinCadPasseio win = new WinCadPasseio();
 	static JFrame win1 = new JFrame();
 	static WinPasseio winPasseio = new WinPasseio();
+	static ManutenirPasseio manutenirPasseio = new ManutenirPasseio();
 
 
 	static JLabel rt1QtdPassageiros = new JLabel();
@@ -281,13 +282,41 @@ public class WinCadPasseio implements ActionListener
 		else
 		{
 
-			System.out.println("Controller novo cadastro liberado!\n");
-			//se der certo o cadastro seguir com a formatação abaixo!
-			bt1Cadastrar.setVisible(false);
-			bt2Limpar.setVisible(false);
-			bt3Novo.setVisible(true);
-			setColorCxs(black);
-			setEditableCxs(false);
+			if ( manutenirPasseio.setCadPasseio(
+					cx3Marca.getText(),
+					cx4Modelo.getText(),
+					cx5Cor.getText(),
+					cx2Placa.getText(),
+					Integer.parseInt(cx8QtdPistoes.getText()),
+					Integer.parseInt(cx9QtdPotencia.getText()),
+					Float.parseFloat(cx7VelocidadeMax.getText()),
+					Integer.parseInt(cx6QtdRodas.getText()),
+					Integer.parseInt(cx1QtdPassageiros.getText())
+				) == 1)
+			{
+				bt1Cadastrar.setVisible(false);
+				bt2Limpar.setVisible(false);
+				bt3Novo.setVisible(true);
+				setColorCxs(black);
+				setEditableCxs(false);
+					JOptionPane.showMessageDialog(
+					null,
+					"  :) Veiculo cadastrado com sucesso!\n" +
+					"			- Botão para Novo cadastro liberado <00> !",
+					"Veiculo Cadastrado",
+					1
+					);
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(
+					null,
+					"  :( Ja existe um veiculo com esta placa!\n" +
+					"		- por favor inicie um novo cadastro !",
+					"Veiculo Duplicado",
+					0
+				);
+			}
 		}
 	}
 
