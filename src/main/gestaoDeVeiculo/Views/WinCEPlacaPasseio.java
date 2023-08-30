@@ -55,6 +55,7 @@ public class WinCEPlacaPasseio implements ActionListener
 	static Font verdana = new Font("Verdana", Font.PLAIN, 15);
 	static Font verdanaTitle = new Font("Verdana", Font.BOLD, 15);
 	static Font verdanaBotton = new Font("Verdana", Font.BOLD, 9);
+	private boolean io = false;
 
 	public void getCEPlacaPasseio()
 	{
@@ -119,9 +120,13 @@ public class WinCEPlacaPasseio implements ActionListener
 		bt4Sair.setFont(verdanaBotton);
 		bt4Sair.setBackground(red);
 
-		bt1Consultar.addActionListener(win);
-		bt2Excluir.addActionListener(win);
-		bt4Sair.addActionListener(win);
+		if (!io)
+		{
+			bt1Consultar.addActionListener(win);
+			bt2Excluir.addActionListener(win);
+			bt4Sair.addActionListener(win);
+			io = true;
+		}
 	}
 
 	public void setCxsInit()
@@ -295,13 +300,6 @@ public class WinCEPlacaPasseio implements ActionListener
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(
-						null,
-						"Veiculo Encontrado <**>!",
-						"Veiculo Encontrado",
-						1
-					);
-
 				setColorCxs(grayBt);
 				cx2Placa.setBackground(gray);
 				bt2Excluir.setVisible(true);
@@ -376,7 +374,6 @@ public class WinCEPlacaPasseio implements ActionListener
 					0
 				);
 			}
-
 		}
 	}
 }

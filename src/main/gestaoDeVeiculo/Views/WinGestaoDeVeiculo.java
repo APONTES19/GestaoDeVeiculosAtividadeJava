@@ -23,7 +23,9 @@ public class WinGestaoDeVeiculo implements ActionListener
 	static JFrame win1 = new JFrame();
 	static WinGestaoDeVeiculo win = new WinGestaoDeVeiculo();
 	static WinPasseio winPasseio = new WinPasseio();
+	private boolean io = false;
 	//static WinCarga winCarga = new WinCarga();
+
 
 	public void getGestaoVeic()
 	{
@@ -50,8 +52,14 @@ public class WinGestaoDeVeiculo implements ActionListener
 		bt1Passeio.setBounds(50, 30, 30, 30);
 		bt2Carga.setBackground(green);
 		bt2Carga.setBounds(50, 80, 30, 30);
-		bt1Passeio.addActionListener(win);
-		bt2Carga.addActionListener(win);
+
+		if (!io)
+		{
+			bt1Passeio.addActionListener(win);
+			bt2Carga.addActionListener(win);
+			io = true;
+		}
+
 	}
 
 	public void setWinInit()
@@ -69,17 +77,17 @@ public class WinGestaoDeVeiculo implements ActionListener
 		win1.add(rt2Carga);
 	}
 
-	public void actionPerformed(ActionEvent evt)
-	{
-		if (evt.getSource().equals(bt1Passeio))
-		{
-			winPasseio.getPasseio();
-			win1.dispose();
-		}
-		if (evt.getSource().equals(bt2Carga))
-		{
-			//winCarga.getCarga();
-			win1.dispose();
-		}
-	}
+    public void actionPerformed(ActionEvent evt)
+    {
+        if (evt.getSource().equals(bt1Passeio))
+        {
+         	winPasseio.getPasseio();
+            win1.dispose();
+        }
+        if (evt.getSource().equals(bt2Carga))
+        {
+            //winCarga.getCarga();
+            win1.dispose();
+        }
+    }
 }

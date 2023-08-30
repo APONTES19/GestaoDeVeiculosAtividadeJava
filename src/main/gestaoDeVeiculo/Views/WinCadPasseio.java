@@ -53,6 +53,7 @@ public class WinCadPasseio implements ActionListener
 	static Font verdana = new Font("Verdana", Font.PLAIN, 15);
 	static Font verdanaTitle = new Font("Verdana", Font.BOLD, 15);
 	static Font verdanaBotton = new Font("Verdana", Font.BOLD, 9);
+	private boolean io = false;
 
 	public void getCadPasseio()
 	{
@@ -125,10 +126,14 @@ public class WinCadPasseio implements ActionListener
 		bt4Sair.setFont(verdanaBotton);
 		bt4Sair.setBackground(red);
 
-		bt1Cadastrar.addActionListener(win);
-		bt2Limpar.addActionListener(win);
-		bt3Novo.addActionListener(win);
-		bt4Sair.addActionListener(win);
+		if (!io)
+		{
+			bt1Cadastrar.addActionListener(win);
+			bt2Limpar.addActionListener(win);
+			bt3Novo.addActionListener(win);
+			bt4Sair.addActionListener(win);
+			io = true;
+		}
 	}
 
 	public void setCxsInit()
@@ -299,13 +304,6 @@ public class WinCadPasseio implements ActionListener
 				bt3Novo.setVisible(true);
 				setColorCxs(black);
 				setEditableCxs(false);
-					JOptionPane.showMessageDialog(
-					null,
-					"  :) Veiculo cadastrado com sucesso!\n" +
-					"			- Botão para Novo cadastro liberado <00> !",
-					"Veiculo Cadastrado",
-					1
-					);
 			}
 			else
 			{

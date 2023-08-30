@@ -1,6 +1,6 @@
 public class ManutenirPasseio {
 
-	private static BDVeiculos veiculo = new BDVeiculos();
+	static BDVeiculos veiculo = new BDVeiculos();
 
 	public static int setCadPasseio(
 		String marca,
