@@ -38,11 +38,16 @@ public class WinImpExcPasseio implements ActionListener
 	static Font verdanaBotton = new Font("Verdana", Font.BOLD, 12);
 	private boolean io = false;
 
-
-	//novos experimentos
 	static JTable table;
 	static JScrollPane scrollPane;
-	static DefaultTableModel model = new DefaultTableModel();
+	static DefaultTableModel model = new DefaultTableModel()
+	{
+		@Override
+		public boolean isCellEditable(int row, int column)
+		{
+			return false;
+		}
+	};
 	static ManutenirPasseio manutenirPasseio = new ManutenirPasseio();
 	static Passeio passeio = new Passeio();
 
@@ -66,8 +71,7 @@ public class WinImpExcPasseio implements ActionListener
 		win1.add(bt2ExcTodos);
 		win1.add(bt4Sair);
 
-		//win1.setLayout(new BorderLayout());
-		win1.add(scrollPane); //, BorderLayout.CENTER);
+		win1.add(scrollPane);
 
 		win1.setVisible(true);
 	}

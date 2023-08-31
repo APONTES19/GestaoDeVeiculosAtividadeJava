@@ -119,6 +119,7 @@ public class WinCadPasseio implements ActionListener
 		bt3Novo.setForeground(grayBt);
 		bt3Novo.setFont(verdanaBotton);
 		bt3Novo.setBackground(blue);
+		bt3Novo.setVisible(true);
 
 		bt4Sair.setText("Sair");
 		bt4Sair.setBounds(310,390,80,40);
@@ -314,6 +315,7 @@ public class WinCadPasseio implements ActionListener
 					"Veiculo Duplicado",
 					0
 				);
+				cx2Placa.requestFocus();
 			}
 		}
 	}
